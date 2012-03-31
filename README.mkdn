@@ -131,89 +131,7 @@ And you can do this instead:
 
 Which I feel is more readable.
 
-# AUTHOR
-
-Stephen R. Scaffidi <sscaffidi@cpan.org>
-
-# COPYRIGHT AND LICENSE
-
-This software is copyright (c) 2012 by Stephen R. Scaffidi.
-
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
-
 # SUPPORT
-
-## Perldoc
-
-You can find documentation for this module with the perldoc command.
-
-    perldoc Set::CartesianProduct::Lazy
-
-## Websites
-
-The following websites have more information about this module, and may be of help to you. As always,
-in addition to those websites please use your favorite search engine to discover more resources.
-
-- MetaCPAN
-
-A modern, open-source CPAN search engine, useful to view POD in HTML format.
-
-[http://metacpan.org/release/Set-CartesianProduct-Lazy](http://metacpan.org/release/Set-CartesianProduct-Lazy)
-
-- Search CPAN
-
-The default CPAN search engine, useful to view POD in HTML format.
-
-[http://search.cpan.org/dist/Set-CartesianProduct-Lazy](http://search.cpan.org/dist/Set-CartesianProduct-Lazy)
-
-- RT: CPAN's Bug Tracker
-
-The RT ( Request Tracker ) website is the default bug/issue tracking system for CPAN.
-
-[http://rt.cpan.org/NoAuth/Bugs.html?Dist=Set-CartesianProduct-Lazy](http://rt.cpan.org/NoAuth/Bugs.html?Dist=Set-CartesianProduct-Lazy)
-
-- AnnoCPAN
-
-The AnnoCPAN is a website that allows community annotations of Perl module documentation.
-
-[http://annocpan.org/dist/Set-CartesianProduct-Lazy](http://annocpan.org/dist/Set-CartesianProduct-Lazy)
-
-- CPAN Ratings
-
-The CPAN Ratings is a website that allows community ratings and reviews of Perl modules.
-
-[http://cpanratings.perl.org/d/Set-CartesianProduct-Lazy](http://cpanratings.perl.org/d/Set-CartesianProduct-Lazy)
-
-- CPAN Forum
-
-The CPAN Forum is a web forum for discussing Perl modules.
-
-[http://cpanforum.com/dist/Set-CartesianProduct-Lazy](http://cpanforum.com/dist/Set-CartesianProduct-Lazy)
-
-- CPANTS
-
-The CPANTS is a website that analyzes the Kwalitee ( code metrics ) of a distribution.
-
-[http://cpants.perl.org/dist/overview/Set-CartesianProduct-Lazy](http://cpants.perl.org/dist/overview/Set-CartesianProduct-Lazy)
-
-- CPAN Testers
-
-The CPAN Testers is a network of smokers who run automated tests on uploaded CPAN distributions.
-
-[http://www.cpantesters.org/distro/S/Set-CartesianProduct-Lazy](http://www.cpantesters.org/distro/S/Set-CartesianProduct-Lazy)
-
-- CPAN Testers Matrix
-
-The CPAN Testers Matrix is a website that provides a visual overview of the test results for a distribution on various Perls/platforms.
-
-[http://matrix.cpantesters.org/?dist=Set-CartesianProduct-Lazy](http://matrix.cpantesters.org/?dist=Set-CartesianProduct-Lazy)
-
-- CPAN Testers Dependencies
-
-The CPAN Testers Dependencies is a website that shows a chart of the test results of all dependencies for a distribution.
-
-[http://deps.cpantesters.org/?module=Set::CartesianProduct::Lazy](http://deps.cpantesters.org/?module=Set::CartesianProduct::Lazy)
 
 ## Bugs / Feature Requests
 
@@ -231,7 +149,13 @@ from your repository :)
 
     git clone https://github.com/Hercynium/Set-CartesianProduct-Lazy.git
 
-# BUGS
+# AUTHOR
 
-Please report any bugs or feature requests to bug-set-cartesianproduct-lazy@rt.cpan.org or through the web interface at:
- http://rt.cpan.org/Public/Dist/Display.html?Name=Set-CartesianProduct-Lazy
+Stephen R. Scaffidi <sscaffidi@cpan.org>
+
+# COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2012 by Stephen R. Scaffidi.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.

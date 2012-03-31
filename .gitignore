@@ -1,6 +1,6 @@
 
 # dzil dist/build files
-Set-CrossProduct-Lazy*
+Set-CartesianProduct-Lazy*
 
 # Version control files and dirs.
 RCS

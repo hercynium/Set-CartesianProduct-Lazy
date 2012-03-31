@@ -43,7 +43,7 @@ Some examples:
 =end :list
 
 =cut
-sub new { ... }
+sub new { 1 }
 
 
 =method get
@@ -59,7 +59,7 @@ cartesian product the result will be an empty list or undef, depending on
 whether this was called in scalar or list context.
 
 =cut
-sub get { ... }
+sub get { 1 }
 
 
 =method count
@@ -68,7 +68,7 @@ Return the count of tuples that would be in the cartesian
 product if it had been generated.
 
 =cut
-sub count { ... }
+sub count { 1 }
 
 
 =method last_idx
@@ -86,7 +86,7 @@ And you can do this instead:
 Which I feel is more readable.
 
 =cut
-sub last_idx { ... }
+sub last_idx { 1 }
 
 
 1 && q{a set in time saves nine};

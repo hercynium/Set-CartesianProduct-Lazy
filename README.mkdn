@@ -1,0 +1,237 @@
+# NAME
+
+Set::CartesianProduct::Lazy - lazily calculate the tuples of a cartesian-product
+
+# VERSION
+
+version 0.001
+
+# SYNOPSIS
+
+    my @a   = qw( foo bar baz bah );
+    my @b   = qw( wibble wobble weeble );
+    my @c   = qw( nip nop );
+
+    my $cpl = Set::CartesianProduct::Lazy->new( \@a, \@b, \@c );
+
+    my $tuple;
+
+    $tuple = $cpl->get(0);   # [ qw( foo wibble nip ) ]
+
+    $tuple = $cpl->get(21);  # [ qw( bah wobble nop ) ]
+
+    $tuple = $cpl->get(7);   # [ qw( bar wobble nip ) ]
+
+    $cpl->count;             # 24
+    $cpl->last_idx;          # 23
+
+# DESCRIPTION
+
+If you have some number of arrays, say like this:
+
+    @a = qw( foo bar baz bah );
+    @b = qw( wibble wobble weeble );
+    @c = qw( nip nop );
+
+And you want all the combinations of one element from each array, like this:
+
+    @cp = (
+      [qw( foo wibble nip )],
+      [qw( foo wibble nop )],
+      [qw( foo wobble nip )],
+      [qw( foo wobble nop )],
+      [qw( foo weeble nip )],
+      # ...
+      [qw( bah wobble nop )],
+      [qw( bah weeble nip )],
+      [qw( bah weeble nop )],
+    )
+
+What you want is a Cartesian Product (also called a Cross Product, but my
+mathy friend insists that Cartesian is correct)
+
+Yes, there are already a lot of other modules on the CPAN that do this.
+I won't claim that this module does this calculation any better or faster,
+but it does do it _differently_, as far as I can tell.
+
+Nothing else seemed to offer a specific feature - I needed to pick random
+individual tuples from the Cartesian Product, _without_ iterating over
+the whole set and _without_ calculating any tuples until they were
+asked for. Bonus points for not making a copy of the original input sets.
+
+I needed the calculation to be lazy, and I needed random-access with O(1)
+retrieval time, even if that meant a slower implementation overall. And
+I didn't want to use RAM unnecessarily, since the data I was working with
+was of a significant size.
+
+# METHODS
+
+## new
+
+Construct a new object. Takes the following arguments:
+
+- options
+
+A hashref of options that modify the way the object works.
+If you don't want to specify any options, simply omit this
+argument.
+
+- sets
+
+A list of arrayrefs from which to compute the cartesian product.
+You can list as many as you want.
+
+For the options hash, the following keys are recognized:
+
+- less_lazy
+
+Makes the get method slightly faster, at the expense
+of not being able to account for any modifications made
+to the original input arrays. If you modify one of the
+arrays used to consruct the object, the results of all
+the other methods are __undefined__. You might get the
+wrong answer. You might trigger an exception, you might
+get mutations that give you super-powers at the expense
+of never being able to touch another human being without
+killing them.
+
+Some examples:
+
+    my $cpl = Set::CartesianProduct::Lazy->new(\@a, [qw(foo bar baz)], \@b);
+    my $cpl = Set::CartesianProduct::Lazy->new( { less_lazy => 1 }, \@a, \@b, \@c);
+
+## get
+
+Return the tuple at the given "position" in the cartesian product.
+The positions, like array indices, are based at 0.
+
+If called in scalar context, an arrayref is returned. If called in list
+context, a list is returned.
+
+If you ask for a position that exceeds the bounds of the array defining the
+cartesian product the result will be an empty list or undef, depending on
+whether this was called in scalar or list context.
+
+## count
+
+Return the count of tuples that would be in the cartesian
+product if it had been generated.
+
+## last_idx
+
+Return the index of the last tuple that would be in the cartesian
+product if it had been generated. This is just for conveniece
+so you don't have to write code like this:
+
+    for my $i ( 0 .. $cpl->count - 1 ) { ... }
+
+And you can do this instead:
+
+    for my $i ( 0 .. $cpl->last_idx ) { ... }
+
+Which I feel is more readable.
+
+# AUTHOR
+
+Stephen R. Scaffidi <sscaffidi@cpan.org>
+
+# COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2012 by Stephen R. Scaffidi.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+# SUPPORT
+
+## Perldoc
+
+You can find documentation for this module with the perldoc command.
+
+    perldoc Set::CartesianProduct::Lazy
+
+## Websites
+
+The following websites have more information about this module, and may be of help to you. As always,
+in addition to those websites please use your favorite search engine to discover more resources.
+
+- MetaCPAN
+
+A modern, open-source CPAN search engine, useful to view POD in HTML format.
+
+[http://metacpan.org/release/Set-CartesianProduct-Lazy](http://metacpan.org/release/Set-CartesianProduct-Lazy)
+
+- Search CPAN
+
+The default CPAN search engine, useful to view POD in HTML format.
+
+[http://search.cpan.org/dist/Set-CartesianProduct-Lazy](http://search.cpan.org/dist/Set-CartesianProduct-Lazy)
+
+- RT: CPAN's Bug Tracker
+
+The RT ( Request Tracker ) website is the default bug/issue tracking system for CPAN.
+
+[http://rt.cpan.org/NoAuth/Bugs.html?Dist=Set-CartesianProduct-Lazy](http://rt.cpan.org/NoAuth/Bugs.html?Dist=Set-CartesianProduct-Lazy)
+
+- AnnoCPAN
+
+The AnnoCPAN is a website that allows community annotations of Perl module documentation.
+
+[http://annocpan.org/dist/Set-CartesianProduct-Lazy](http://annocpan.org/dist/Set-CartesianProduct-Lazy)
+
+- CPAN Ratings
+
+The CPAN Ratings is a website that allows community ratings and reviews of Perl modules.
+
+[http://cpanratings.perl.org/d/Set-CartesianProduct-Lazy](http://cpanratings.perl.org/d/Set-CartesianProduct-Lazy)
+
+- CPAN Forum
+
+The CPAN Forum is a web forum for discussing Perl modules.
+
+[http://cpanforum.com/dist/Set-CartesianProduct-Lazy](http://cpanforum.com/dist/Set-CartesianProduct-Lazy)
+
+- CPANTS
+
+The CPANTS is a website that analyzes the Kwalitee ( code metrics ) of a distribution.
+
+[http://cpants.perl.org/dist/overview/Set-CartesianProduct-Lazy](http://cpants.perl.org/dist/overview/Set-CartesianProduct-Lazy)
+
+- CPAN Testers
+
+The CPAN Testers is a network of smokers who run automated tests on uploaded CPAN distributions.
+
+[http://www.cpantesters.org/distro/S/Set-CartesianProduct-Lazy](http://www.cpantesters.org/distro/S/Set-CartesianProduct-Lazy)
+
+- CPAN Testers Matrix
+
+The CPAN Testers Matrix is a website that provides a visual overview of the test results for a distribution on various Perls/platforms.
+
+[http://matrix.cpantesters.org/?dist=Set-CartesianProduct-Lazy](http://matrix.cpantesters.org/?dist=Set-CartesianProduct-Lazy)
+
+- CPAN Testers Dependencies
+
+The CPAN Testers Dependencies is a website that shows a chart of the test results of all dependencies for a distribution.
+
+[http://deps.cpantesters.org/?module=Set::CartesianProduct::Lazy](http://deps.cpantesters.org/?module=Set::CartesianProduct::Lazy)
+
+## Bugs / Feature Requests
+
+Please report any bugs or feature requests by email to `bug-set-cartesianproduct-lazy at rt.cpan.org`, or through
+the web interface at [http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Set-CartesianProduct-Lazy](http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Set-CartesianProduct-Lazy). You will be automatically notified of any
+progress on the request by the system.
+
+## Source Code
+
+The code is open to the world, and available for you to hack on. Please feel free to browse it and play
+with it, or whatever. If you want to contribute patches, please send me a diff or prod me to pull
+from your repository :)
+
+[https://github.com/Hercynium/Set-CartesianProduct-Lazy](https://github.com/Hercynium/Set-CartesianProduct-Lazy)
+
+    git clone https://github.com/Hercynium/Set-CartesianProduct-Lazy.git
+
+# BUGS
+
+Please report any bugs or feature requests to bug-set-cartesianproduct-lazy@rt.cpan.org or through the web interface at:
+ http://rt.cpan.org/Public/Dist/Display.html?Name=Set-CartesianProduct-Lazy

@@ -7,6 +7,7 @@ package Set::CartesianProduct::Lazy;
 use List::Util qw( reduce );
 use Scalar::Util qw( reftype );
 use Data::Dumper;
+use Carp;
 
 =method new
 
@@ -123,8 +124,14 @@ Examples:
   my $fail2 = $cpl->get( -1 );          # who knows
 
 =cut
-sub get { my $self = shift; $self->{getsub}->(@_) }
+sub get {
+  my $self = shift;
+  croak "no value passed to get method\n" unless defined $_[0];
+  $self->{getsub}->(@_);
+}
 
+
+#sub get_faster { my $self = shift; $self->{getsub}->(@_); }
 
 =method count
 

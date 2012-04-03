@@ -48,7 +48,7 @@ And you want all the combinations of one element from each array, like this:
     )
 
 What you want is a Cartesian Product (also called a Cross Product, but my
-mathy friend insists that Cartesian is correct)
+mathy friends insist that Cartesian is correct)
 
 Yes, there are already a lot of other modules on the CPAN that do this.
 I won't claim that this module does this calculation any better or faster,
@@ -60,9 +60,10 @@ the whole set and _without_ calculating any tuples until they were
 asked for. Bonus points for not making a copy of the original input sets.
 
 I needed the calculation to be lazy, and I needed random-access with O(1)
+(well, O(n) for the persnickety but n is so small it might as well be 1)
 retrieval time, even if that meant a slower implementation overall. And
-I didn't want to use RAM unnecessarily, since the data I was working with
-was of a significant size.
+I didn't want to use RAM unnecessarily by creating copies of the original
+arrays, since the data I was working with was of a significant size.
 
 # METHODS
 
@@ -76,24 +77,22 @@ A hashref of options that modify the way the object works.
 If you don't want to specify any options, simply omit this
 argument.
 
+    - less_lazy
+
+    Makes the get method slightly faster, at the expense
+    of not being able to account for any modifications made
+    to the original input arrays, and using more memory.
+    If you modify one of the arrays used to consruct the object,
+    the results of all the other methods are __undefined__.
+    You might get the wrong answer. You might trigger an
+    exception, you might get mutations that give you super-powers
+    at the expense of never being able to touch another human
+    being without killing them.
+
 - sets
 
 A list of arrayrefs from which to compute the cartesian product.
 You can list as many as you want.
-
-For the options hash, the following keys are recognized:
-
-- less_lazy
-
-Makes the get method slightly faster, at the expense
-of not being able to account for any modifications made
-to the original input arrays. If you modify one of the
-arrays used to consruct the object, the results of all
-the other methods are __undefined__. You might get the
-wrong answer. You might trigger an exception, you might
-get mutations that give you super-powers at the expense
-of never being able to touch another human being without
-killing them.
 
 Some examples:
 
@@ -109,13 +108,25 @@ If called in scalar context, an arrayref is returned. If called in list
 context, a list is returned.
 
 If you ask for a position that exceeds the bounds of the array defining the
-cartesian product the result will be an empty list or undef, depending on
-whether this was called in scalar or list context.
+cartesian product the result will be... interesting. I won't make any
+guarantees, but if it's useful, let me know.
+
+Examples:
+
+    my @tuple  = $cpl->get(12);                # list context
+    my $tuple2 = $cpl->get( $cpl->count / 2 ); # scalar context
+
+    my $fail  = $cpl->get( $cpl->count ); # probably equal to ->get(0)
+    my $fail2 = $cpl->get( -1 );          # who knows
 
 ## count
 
 Return the count of tuples that would be in the cartesian
 product if it had been generated.
+
+Example:
+
+    my $count = $cpl->count;
 
 ## last_idx
 

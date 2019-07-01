@@ -73,26 +73,26 @@ Construct a new object. Takes the following arguments:
 
 - options
 
-A hashref of options that modify the way the object works.
-If you don't want to specify any options, simply omit this
-argument.
+    A hashref of options that modify the way the object works.
+    If you don't want to specify any options, simply omit this
+    argument.
 
-    - less_lazy
+    - less\_lazy
 
-    Makes the get method slightly faster, at the expense
-    of not being able to account for any modifications made
-    to the original input arrays, and using more memory.
-    If you modify one of the arrays used to consruct the object,
-    the results of all the other methods are __undefined__.
-    You might get the wrong answer. You might trigger an
-    exception, you might get mutations that give you super-powers
-    at the expense of never being able to touch another human
-    being without killing them.
+        Makes the get method slightly faster, at the expense
+        of not being able to account for any modifications made
+        to the original input arrays, and using more memory.
+        If you modify one of the arrays used to consruct the object,
+        the results of all the other methods are **undefined**.
+        You might get the wrong answer. You might trigger an
+        exception, you might get mutations that give you super-powers
+        at the expense of never being able to touch another human
+        being without killing them.
 
 - sets
 
-A list of arrayrefs from which to compute the cartesian product.
-You can list as many as you want.
+    A list of arrayrefs from which to compute the cartesian product.
+    You can list as many as you want.
 
 Some examples:
 
@@ -128,7 +128,7 @@ Example:
 
     my $count = $cpl->count;
 
-## last_idx
+## last\_idx
 
 Return the index of the last tuple that would be in the cartesian
 product if it had been generated. This is just for conveniece
@@ -147,7 +147,7 @@ Which I feel is more readable.
 ## Bugs / Feature Requests
 
 Please report any bugs or feature requests by email to `bug-set-cartesianproduct-lazy at rt.cpan.org`, or through
-the web interface at [http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Set-CartesianProduct-Lazy](http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Set-CartesianProduct-Lazy). You will be automatically notified of any
+the web interface at [https://rt.cpan.org/Public/Bug/Report.html?Queue=Set-CartesianProduct-Lazy](https://rt.cpan.org/Public/Bug/Report.html?Queue=Set-CartesianProduct-Lazy). You will be automatically notified of any
 progress on the request by the system.
 
 ## Source Code
@@ -156,9 +156,9 @@ The code is open to the world, and available for you to hack on. Please feel fre
 with it, or whatever. If you want to contribute patches, please send me a diff or prod me to pull
 from your repository :)
 
-[https://github.com/Hercynium/Set-CartesianProduct-Lazy](https://github.com/Hercynium/Set-CartesianProduct-Lazy)
+[https://github.com/hercynium/Set-CartesianProduct-Lazy](https://github.com/hercynium/Set-CartesianProduct-Lazy)
 
-    git clone https://github.com/Hercynium/Set-CartesianProduct-Lazy.git
+    git clone https://github.com/hercynium/Set-CartesianProduct-Lazy.git
 
 # AUTHOR
 
